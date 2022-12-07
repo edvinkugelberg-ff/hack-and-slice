@@ -6,7 +6,7 @@ namespace HackAndSlice;
 public class OpenAiService
 	{
 		private static HttpClient _httpClient;
-		private string ApiKey = "";
+		private string ApiKey = ""; // Make sure to get your own ApiKey from by following this guide: https://beta.openai.com/docs/api-reference/authentication
 
 		public OpenAiService(HttpClient httpClient)
 		{
@@ -15,6 +15,9 @@ public class OpenAiService
 
 		public async Task<string> GenerateImage(string imagePrompt)
 		{
+			if (ApiKey == string.Empty)
+				return string.Empty;
+			
 			var content = new ImagePrompt
 			{
 				prompt = imagePrompt,
